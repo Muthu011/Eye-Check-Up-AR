@@ -11,6 +11,7 @@ public class UserController : MonoBehaviour
     public List<string> alphabets = new List<string> { "E", "F", "P", "T"};
     public int numberofTry=0;
     public int CorrectWords=0;
+    public List<bool> isCorrect = new List<bool>();
 
     public void GetInput(string input)
     {
@@ -18,18 +19,35 @@ public class UserController : MonoBehaviour
         if (a == alphabets[CorrectWords])
         {
             MessageDisplay.text = "Correct! Tell Next Word";
+            bool temp = true;
+
+            isCorrect.Add(temp);
             CorrectWords++;
         }
         else
         {
             MessageDisplay.text = "Try again";
             numberofTry++;
-            if (numberofTry > 3)
+            if (numberofTry > 1)
             {
+                bool temp = false;
+                isCorrect.Add(temp);
                 Debug.Log("consult doc");
                 MessageDisplay.text = "consult doc";
+                StartCoroutine(MarkDisplay());
             }
         }
     }
 
+    public IEnumerator MarkDisplay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < isCorrect.Count; i++)
+        {
+            if (isCorrect[0]==false)
+            {
+                MessageDisplay.text = "Your Mark is 20/100";
+            }
+        }
+    }
 }
