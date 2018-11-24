@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 104728871}
   - component: {fileID: 104728870}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: InputCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,6 +245,7 @@ MonoBehaviour:
   - T
   numberofTry: 0
   CorrectWords: 0
+  isCorrect: 
 --- !u!4 &139747071
 Transform:
   m_ObjectHideFlags: 0

@@ -44,9 +44,27 @@ public class UserController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < isCorrect.Count; i++)
         {
-            if (isCorrect[0]==false)
+            if (isCorrect[0] != null)
             {
-                MessageDisplay.text = "Your Mark is 20/100";
+                if (isCorrect[0] == false)
+                {
+                    MessageDisplay.text = "Your Mark is 20/100";
+                }
+            }
+            else if (isCorrect[1] != null || isCorrect[2] != null)
+            {
+                Debug.Log("asdsad");
+                if (isCorrect[1] == false || isCorrect[2] == false)
+                {
+                    MessageDisplay.text = "Your Mark is 20/80";
+                }
+            }
+            else if (isCorrect[3] != null)
+            {
+                if (isCorrect[3] == false)
+                {
+                    MessageDisplay.text = "Your Mark is 20/60";
+                }
             }
         }
     }
