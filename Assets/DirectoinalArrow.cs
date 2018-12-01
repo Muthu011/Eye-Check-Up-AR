@@ -6,15 +6,22 @@ public class DirectoinalArrow : MonoBehaviour
 {
     public GameObject target;
     public GameObject player;
+
     public void Update()
     {
-        Vector3 targrtDirection = target.transform.position;
+        if (SceneController.sceneController.RoomStoredForReference != null)
+        {
+            target = SceneController.sceneController.Room.transform.GetChild(0).transform.GetChild(4).gameObject;
 
-        targrtDirection.y = transform.position.y;
 
-        transform.LookAt(target.transform.position);
+            Vector3 targrtDirection = target.transform.position;
 
-        targetReached();
+            targrtDirection.y = transform.position.y;
+
+            transform.LookAt(target.transform.position);
+
+            targetReached();
+        }
     }
 
     public void targetReached()
