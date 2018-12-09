@@ -14,6 +14,9 @@ public class UserController : MonoBehaviour
     public int numberofTry=0;
     public int CurrentWord=0;
     public List<bool> isCorrect = new List<bool>();
+    public InputController inputController;
+
+
 
     public void GetInput(string input)
     {
@@ -23,7 +26,8 @@ public class UserController : MonoBehaviour
         UserAns.text = "";
         if (a == alphabets[CurrentWord])
         {
-            MessageDisplay.text = "Correct! Tell Next Word";
+            //MessageDisplay.text = "Correct! Tell Next Word";
+            MessageSystem("Correct! Tell Next Word");
             bool temp = true;
 
             isCorrect.Add(temp);
@@ -31,7 +35,9 @@ public class UserController : MonoBehaviour
         }
         else
         {
-            MessageDisplay.text = "Try again";
+            //MessageDisplay.text = "Try again";
+            MessageSystem("Try again");
+
             numberofTry++;
             if (numberofTry > 1)
             {
@@ -39,6 +45,8 @@ public class UserController : MonoBehaviour
                 isCorrect.Add(temp);
                 Debug.Log("consult doc");
                 MessageDisplay.text = "consult doc";
+                MessageSystem("consult doc");
+
                 StartCoroutine(MarkDisplay());
             }
         }
@@ -88,7 +96,9 @@ public class UserController : MonoBehaviour
         {
             if (isCorrect[0] == false)
             {
-                MessageDisplay.text = "Your Mark is 20/100";
+                //MessageDisplay.text = "Your Mark is 20/100";
+                MessageSystem("Your Mark is 20/100");
+
             }
         }
         else if (isCorrect[1] != null || isCorrect[2] != null)
@@ -96,14 +106,18 @@ public class UserController : MonoBehaviour
             Debug.Log("asdsad");
             if (isCorrect[1] == false || isCorrect[2] == false)
             {
-                MessageDisplay.text = "Your Mark is 20/80";
+                //MessageDisplay.text = "Your Mark is 20/80";
+                MessageSystem("Your Mark is 20/80");
+
             }
         }
         else if (isCorrect[3] != null)
         {
             if (isCorrect[3] == false)
             {
-                MessageDisplay.text = "Your Mark is 20/60";
+                //MessageDisplay.text = "Your Mark is 20/60";
+                MessageSystem("Your Mark is 20/60");
+
             }
             //if (rowOfLetters[CurrentWord].isRight[j] == false)
             //{
@@ -111,6 +125,19 @@ public class UserController : MonoBehaviour
             //}
         }
     }
+
+    public IEnumerator MessageSystem(string message)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        MessageDisplay.text = message;
+
+        yield return new WaitForSeconds(3f);
+
+        MessageDisplay.text = "";
+
+    }
+
 }
 
 //[System.Serializable]

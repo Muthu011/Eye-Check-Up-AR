@@ -11,8 +11,7 @@ public class SceneController : MonoBehaviour
     public GameObject appcontroller;
     public GameObject directionArrow;
     public GameObject standPosition;
-
-    public GameObject cube1, cube2;
+    public GameObject input;
 
     public Camera firstPersonCamera;
     public GameObject Room;
@@ -130,9 +129,9 @@ public class SceneController : MonoBehaviour
             if (Physics.Raycast(firstPersonCamera.transform.position, firstPersonCamera.transform.forward, out rayHit, 3f))
             {
                 Debug.DrawRay(firstPersonCamera.transform.position, firstPersonCamera.transform.forward*rayHit.distance,Color.blue);
-                if (rayHit.collider.tag == "Cube1")
+                if (rayHit.collider.tag == "PlayerPosition")
                 {
-                    cube2.SetActive(true);
+                    userController.inputController.DrawMenu();
                 userController.MessageDisplay.text = "rAY HITTING DISPLAYING" ;
                 }
             }
@@ -140,4 +139,11 @@ public class SceneController : MonoBehaviour
         //}
 
     }
+
+    public void OnPlayerStand()
+    {
+
+
+    }
+
 }
